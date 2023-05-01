@@ -1,5 +1,3 @@
-remote_theme: samarsault/plainwhite-jekyll
-
 title: Caleb's Blog
 author: Caleb-kim19
 email: caleb_kim19@handong.ac.kr
@@ -7,6 +5,7 @@ description: > # this means to ignore newlines until "show_exerpts:"
   Caleb's Blog
 show_excerpts: true # set to true to show excerpts on the homepage
 
+remote_theme: samarsault/plainwhite-jekyll
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 sass:
@@ -53,4 +52,10 @@ plainwhite:
 # - about.md
 
 # Build settings
-theme: plainwhite
+# theme: plainwhite
+
+url: "https://https://caleb-kim19.github.io/" # the base hostname & protocol for your site
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+#  - jekyll-feed
