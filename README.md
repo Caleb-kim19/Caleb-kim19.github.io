@@ -1,62 +1,222 @@
-# Kasper
+# plainwhite
 
-This is a port of Ghost's default theme [Casper v1](https://github.com/tryghost/casper) for Jekyll. Here is a live [demo](https://rosario.io/kasper). 
+Simplistic jekyll portfolio-style theme for writers.
 
-Feel free to fork, change, modify and re-use it.
+**Demo**: [samarsault.com](https://samarsault.com)
+
+![plainwhite theme preview](/screenshot.png)
+
+## Installation on Github Pages
+
+Add this line to your site's `_config.yml`:
+
+```yaml
+remote_theme: samarsault/plainwhite-jekyll
+```
 
 ## Installation
 
-    git clone https://github.com/rosario/kasper.git
-    cd kasper
-    gem install jekyll
-    gem install jekyll-paginate
-    
-## Change _config.yml
+Add this line to your Jekyll site's `Gemfile`:
 
-Change the following settings in _config.yaml. Most likely you want the `baseurl: ""`
-
-```
-baseurl: ""
-domain_name: "yourblog-domain.com"
+```ruby
+gem "plainwhite"
 ```
 
-## How to use it
+And add this line to your Jekyll site's `_config.yml`:
 
-Build page and start local web server
+```yaml
+theme: plainwhite
+```
 
-    jekyll serve
+And then execute:
 
-Build page into `_site` folder
+    $ bundle
 
-    jekyll build
+Or install it yourself as:
 
-## Kasper theme includes
+    $ gem install plainwhite
 
-* Pagination
-* Rss
-* Google Analytics Tracking code
-* Code Syntax Highlight
-* Author's profile with picture
-* Disqus comments
+## Usage
 
-## Screenshots
+The "plainwhite" key in \_config.yml is used to customize the theme data.
 
-![index page](https://raw.github.com/rosario/kasper/master/assets/images/kasper-theme-index.png)
-![post page](https://raw.github.com/rosario/kasper/master/assets/images/kasper-theme-post.png)
+```yaml
+plainwhite:
+  name: Adam Denisov
+  tagline: Developer. Designer
+  date_format: "%b %-d, %Y"
 
+  social_links:
+    twitter: samarsault
+    github: samarsault
+    linkedIn: in/samarsault # format: locale/username
+```
 
-## Thanks
+**Updating Placeholder Image**
 
-Most of the work has been already done by the Ghost team, I've just ported Casper to Jekyll. 
-I've also added few things specific to Jekyll and some minor style changes.
+The placeholder portfolio image can be replaced by the desired image by placing it as `assets/portfolio.png` in your jekyll website, or by changing the following line in `_config.yaml`
 
-## Copyright & License
+```yaml
+plainwhite:
+  portfolio_image:  "assets/portfolio.png" # the path from the base directory of the site to the image to display (no / at the start)
+```
 
-Copyright (C) 2013 Ghost Foundation - Released under the MIT License.
+To use a different image for dark mode, e.g. with different colors that work better in dark mode, add a `portfolio_image_dark` entry in addition to the `portfolio_image`.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+```yaml
+plainwhite:
+  portfolio_image:      "assets/portfolio.png"
+  portfolio_image_dark: "assets/portfolio_dark.png"
+```
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+**Comments (Disqus)**
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Comments on posts can be enabled by specifying your disqus_shortname under plainwhite in `_config.yml`. For example,
+
+```yaml
+plainwhite:
+  disqus_shortname: games
+```
+
+**Google Analytics**
+
+It can be enabled by specifying your analytics id under plainwhite in `_config.yml`
+
+```yaml
+plainwhite:
+  analytics_id: "< YOUR ID >"
+```
+
+**Sitemap**
+
+It can be toggled by the following line to under plainwhite in `_config.yml`
+
+```yaml
+plainwhite:
+  sitemap: true
+```
+
+**Excerpts**
+
+Excerpts can be enabled by adding the following line to your `_config.yml`
+
+```yaml
+show_excerpts: true
+```
+
+**Layouts**
+
+- Home
+- Page
+- Post
+
+**Navigation**
+
+Navigation can be enabled by adding the following line to your `_config.yml`
+
+```yaml
+plainwhite:
+  navigation:
+    - title: My Work
+      url: "/my-work"
+    - title: Resume
+      url: "/resume"
+```
+
+**Mobile**
+
+By default, Plainwhite places the sidebar (logo, name, tagline etc.) above the content on mobile (narrow screens).
+To condense it (moving some things to the bottom of the page and making the rest smaller) so it takes up less space, add the following to your `_config.yml`:
+
+```yaml
+plainwhite:
+  condensed_mobile:
+    - home
+    - post
+    - page
+```
+
+This chooses which layouts (types of page) should be condensed on mobile screens. E.g. if you want everything but the landing page to be condensed, remove `home` from the list. This option does not affect rendering on wider screens.
+
+**Dark mode**
+
+Dark mode can be enabled by setting the `dark_mode` flag in your `_config.yml`
+
+The website will check the OS preferred color scheme and set the theme accordingly, the preference will then be saved in a cookie
+
+```yaml
+plainwhite:
+  dark_mode: true
+```
+
+![plainwhite dark theme previe](/dark.png)
+
+**Multiline tagline**
+
+Tagline can be multiline in this way
+
+```yaml
+plainwhite:
+  tagline: |
+  First Line. 
+
+  Second Line. 
+
+  Third Line.
+```
+
+**Search-bar**
+
+Search-bar can be enabled by adding the following line to `config.yml`
+
+```yaml
+plainwhite:
+  search: true
+```
+
+Search is powered by [Simple-Jekyll-Search](https://github.com/christian-fei/Simple-Jekyll-Search) Jekyll plugin. A `search.json` containing post meta and contents will be generated in site root folder. Plugin JavaScript will then match for posts based on user input. More info and `search.json` customization documentation can be found in plugin repository.
+
+**Base URL**
+
+You can specify a custom base URL (eg. example.com/blog/) by adding the following line to `_config.yaml`. Note that there is no trailing slash on the URL.
+
+```yaml
+baseurl: "/blog"
+```
+
+**Language**
+
+You can set the `lang` attribute of the `<html>` tag on your pages by changing the following line in `_config.yml`:
+
+```yaml
+plainwhite:
+  html_lang: "en"
+```
+
+[See here for a full list of available language codes](https://www.w3schools.com/tags/ref_country_codes.asp)
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/samarsault/plainwhite-jekyll. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Development
+
+To set up your environment to develop this theme, run `bundle install`.
+
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+
+When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
+To add a custom directory to your theme-gem, please edit the regexp in `plainwhite.gemspec` accordingly.
+
+## Donation
+If this project help you reduce time to develop, you can give me a cup of coffee :) 
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/thelehhman)
+
+## License
+
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## More themes
+
+- [Texture](https://github.com/samarsault/texture)
